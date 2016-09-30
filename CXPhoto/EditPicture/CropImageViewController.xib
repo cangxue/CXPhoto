@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CropImageViewController">
             <connections>
-                <outlet property="cropMaskView" destination="Qgr-MZ-YOz" id="14a-ZD-JJe"/>
                 <outlet property="imageHolderView" destination="G7u-U4-z2r" id="laX-8b-JAe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,11 +19,6 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G7u-U4-z2r">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
-                <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgr-MZ-YOz">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    <gestureRecognizers/>
-                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeE-dC-bp7">
                     <rect key="frame" x="8" y="615" width="44" height="44"/>
                     <constraints>
@@ -54,15 +48,11 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="G7u-U4-z2r" secondAttribute="bottom" id="8kb-zI-WHY"/>
                 <constraint firstAttribute="bottom" secondItem="Byn-2A-io7" secondAttribute="bottom" constant="8" id="AGu-tQ-VTX"/>
-                <constraint firstItem="Qgr-MZ-YOz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OTN-zB-Dy2"/>
                 <constraint firstAttribute="trailing" secondItem="G7u-U4-z2r" secondAttribute="trailing" id="THn-Z2-KaO"/>
                 <constraint firstItem="G7u-U4-z2r" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZTr-W1-lhp"/>
-                <constraint firstItem="Qgr-MZ-YOz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dW4-Gd-Wt9"/>
                 <constraint firstAttribute="trailing" secondItem="Byn-2A-io7" secondAttribute="trailing" constant="8" id="ePD-oz-sOT"/>
-                <constraint firstAttribute="bottom" secondItem="Qgr-MZ-YOz" secondAttribute="bottom" id="hMt-E4-L9q"/>
                 <constraint firstAttribute="bottom" secondItem="KeE-dC-bp7" secondAttribute="bottom" constant="8" id="iJh-oV-biT"/>
                 <constraint firstItem="KeE-dC-bp7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="lqh-RQ-Swl"/>
-                <constraint firstAttribute="trailing" secondItem="Qgr-MZ-YOz" secondAttribute="trailing" id="uIg-3C-yRO"/>
                 <constraint firstItem="G7u-U4-z2r" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vC0-B3-yE3"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

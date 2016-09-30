@@ -6,6 +6,7 @@
 //  Copyright © 2015年 yinyu. All rights reserved.
 //
 
+
 #import "CropImageViewController.h"
 #import "UIImage+Handler.h"
 #import <QuartzCore/QuartzCore.h>//导入框架
@@ -71,7 +72,7 @@
 //待裁剪图片的ImageView
 @property (weak, nonatomic) IBOutlet UIImageView *imageHolderView;
 //黑色蒙板
-@property (weak, nonatomic) IBOutlet UIView *cropMaskView;
+@property (strong, nonatomic) UIView *cropMaskView;
 //左上角箭头
 @property (strong, nonatomic) UIImageView *arrow1;
 //右上角箭头
@@ -124,16 +125,12 @@ static UIImage *_myImage;
     
     [self loadImage];
     
-    
-//    [self resetCropView];
-    [self resetCropMask];
-    [self resetAllArrows];
-    
 }
 
 - (void)layoutSubViews:(BOOL)animated {
     
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -150,7 +147,7 @@ static UIImage *_myImage;
  *加载image并根据image的尺寸重新设置imageview的尺寸，取到image的缩放比
  */
 - (void)loadImage {
-
+    
     CGRect frame = self.cropView.frame;
     if(_imageHWFactor <= _viewHWFactor) {//宽大于高
         if (_myImage.size.width < SCREENWIDTH) {
@@ -184,12 +181,23 @@ static UIImage *_myImage;
         }
     }
     
-    frame.origin.x = (SCREENWIDTH - frame.size.width)/2;
-    frame.origin.y = (SCREENHEIGHT - frame.size.height)/2;
+    frame.origin.x = (_holderWidth - frame.size.width)/2;
+    frame.origin.y = (_holderHeight - frame.size.height)/2;
     
     self.cropView.frame = frame;
-    _cropViewWidth = self.cropView.frame.size.width;
-    _cropViewHeight = self.cropView.frame.size.height;
+    
+    CGRect maskframe = self.cropMaskView.frame;
+    maskframe.size.width = _holderWidth;
+    maskframe.size.height = _holderHeight;
+    maskframe.origin.x = (SCREENWIDTH - _holderWidth)/2;
+    maskframe.origin.y = (SCREENHEIGHT - _holderHeight)/2;
+    self.cropMaskView.frame = maskframe;
+    
+    [self resetCropMask];
+    [self resetAllArrows];
+    
+//    _cropViewWidth = self.cropView.frame.size.width;
+//    _cropViewHeight = self.cropView.frame.size.height;
 
 }
 
@@ -198,8 +206,6 @@ static UIImage *_myImage;
  */
 
 - (void)resetCropMask {
-//    NSLog(@"======x:%f  y:%f  w:%f  h:%f",self.cropView.frame.origin.x,self.cropView.frame.origin.y,self.cropView.frame.size.width,self.cropView.frame.size.height);
-//     NSLog(@"cropView witdth=%f  cropView height=%f",self.cropView.frame.size.width, self.cropView.frame.size.height);
     UIBezierPath *path = [UIBezierPath bezierPathWithRect: self.cropMaskView.bounds];
     CGFloat x = CGRectGetMinX(self.cropView.frame);
     CGFloat y =  CGRectGetMinY(self.cropView.frame);
@@ -224,11 +230,11 @@ static UIImage *_myImage;
 - (void)moveCropView:(UIPanGestureRecognizer *)panGesture {
     [self resetCropView];
     
-    CGFloat minX = (SCREENWIDTH - _holderWidth)/2;
-    CGFloat maxX = (SCREENWIDTH + _holderWidth)/2 - CGRectGetWidth(self.cropView.frame);
-    CGFloat minY = (SCREENHEIGHT - _holderHeight)/2;
-    CGFloat maxY = (SCREENHEIGHT + _holderHeight)/2 - CGRectGetHeight(self.cropView.frame);
-    NSLog(@"minX=%f  maxX=%f  minY=%f  maxY%f",minX,maxY,minY,maxY);
+    CGFloat minX = 0;
+    CGFloat maxX = _holderWidth - CGRectGetWidth(self.cropView.frame);
+    CGFloat minY = 0;
+    CGFloat maxY = _holderHeight - CGRectGetHeight(self.cropView.frame);
+
     if(panGesture.state == UIGestureRecognizerStateBegan) {
         _startPointCropView = [panGesture locationInView:self.cropMaskView];
         self.arrow1.userInteractionEnabled = NO;
@@ -262,10 +268,12 @@ static UIImage *_myImage;
  */
 - (void)moveCorner:(UIPanGestureRecognizer *)panGesture {
     CGPoint *startPoint = NULL;
-    CGFloat minX = CGRectGetMinX(self.imageHolderView.frame) - ARROWBORDERWIDTH;
-    CGFloat maxX = CGRectGetMaxX(self.imageHolderView.frame) - ARROWWIDTH + ARROWBORDERWIDTH;
-    CGFloat minY = CGRectGetMinY(self.imageHolderView.frame) - ARROWBORDERWIDTH;
-    CGFloat maxY = CGRectGetMaxY(self.imageHolderView.frame) - ARROWHEIGHT + ARROWBORDERWIDTH;
+    CGFloat minX = - ARROWBORDERWIDTH;
+    CGFloat maxX = _holderWidth - ARROWWIDTH + ARROWBORDERWIDTH;
+    CGFloat minY = - ARROWBORDERWIDTH;
+    CGFloat maxY = _holderHeight - ARROWHEIGHT + ARROWBORDERWIDTH;
+    
+    NSLog(@"minX=%f  maxX=%f  minY=%f  maxY%f",minX,maxY,minY,maxY);
     
     if(panGesture.view == self.arrow1) {
         startPoint = &_startPoint1;
@@ -296,6 +304,9 @@ static UIImage *_myImage;
         self.cropView.userInteractionEnabled = YES;
     }
     else if(panGesture.state == UIGestureRecognizerStateChanged) {
+        
+        
+        
         CGPoint endPoint = [panGesture locationInView:self.cropMaskView];
         CGRect frame = panGesture.view.frame;
         frame.origin.x += endPoint.x - startPoint->x;
@@ -315,14 +326,14 @@ static UIImage *_myImage;
  */
 
 - (void)resetArrowsFollow: (UIView *)arrow {
-    NSLog(@"_holderWidth=%f  _holderHeight=%f",_holderWidth,_holderHeight);
-    
-    NSLog(@"cropView witdth=%f  cropView height=%f",self.cropView.frame.size.width, self.cropView.frame.size.height);
-    
-    CGFloat borderMinX = CGRectGetMinX(self.imageHolderView.frame);
-    CGFloat borderMaxX = CGRectGetMaxX(self.imageHolderView.frame);
-    CGFloat borderMinY = CGRectGetMinY(self.imageHolderView.frame);
-    CGFloat borderMaxY = CGRectGetMaxY(self.imageHolderView.frame);
+//    NSLog(@"_holderWidth=%f  _holderHeight=%f",_holderWidth,_holderHeight);
+//    
+//    NSLog(@"cropView witdth=%f  cropView height=%f",self.cropView.frame.size.width, self.cropView.frame.size.height);
+
+    CGFloat borderMinX = CGRectGetMinX(self.cropMaskView.frame);
+    CGFloat borderMaxX = CGRectGetMaxX(self.cropMaskView.frame);
+    CGFloat borderMinY = CGRectGetMinY(self.cropMaskView.frame);
+    CGFloat borderMaxY = CGRectGetMaxY(self.cropMaskView.frame);
     if(arrow == self.arrow1) {
         
         if(_currentProportion == 0) {
@@ -442,6 +453,9 @@ static UIImage *_myImage;
     self.arrow3.center = CGPointMake(CGRectGetMinX(self.cropView.frame) - ARROWBORDERWIDTH + ARROWWIDTH/2.0, CGRectGetMaxY(self.cropView.frame) + ARROWBORDERWIDTH - ARROWHEIGHT/2.0);
     self.arrow4.center = CGPointMake(CGRectGetMaxX(self.cropView.frame) + ARROWBORDERWIDTH - ARROWWIDTH/2.0, CGRectGetMaxY(self.cropView.frame) + ARROWBORDERWIDTH - ARROWHEIGHT/2.0);
     [self.arrow1 layoutIfNeeded];
+    [self.arrow2 layoutIfNeeded];
+    [self.arrow3 layoutIfNeeded];
+    [self.arrow4 layoutIfNeeded];
 }
 /**
  *根据当前所有角的位置重新设置裁剪区域的位置
@@ -454,7 +468,7 @@ static UIImage *_myImage;
  *出对应的裁剪区域在实际image的尺寸
  */
 - (CGRect)cropAreaInImage {
-    CGRect cropAreaInImageView = [self.cropMaskView convertRect:self.cropView.frame toView:self.imageHolderView];
+    CGRect cropAreaInImageView = [self.cropMaskView convertRect:self.cropView.frame toView:self.cropMaskView];
     CGRect cropAreaInImage;
     cropAreaInImage.origin.x = cropAreaInImageView.origin.x * _imageScale;
     cropAreaInImage.origin.y = cropAreaInImageView.origin.y * _imageScale;
@@ -491,6 +505,11 @@ static UIImage *_myImage;
     self.arrow2Gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveCorner:)];
     self.arrow3Gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveCorner:)];
     self.arrow4Gesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveCorner:)];
+    
+    
+    self.cropMaskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    self.cropMaskView.backgroundColor = [UIColor colorWithWhite:0x000000 alpha:0.7];
+    [self.view insertSubview:self.cropMaskView atIndex:1];
     
     self.cropView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [self.cropView setUserInteractionEnabled:YES];
