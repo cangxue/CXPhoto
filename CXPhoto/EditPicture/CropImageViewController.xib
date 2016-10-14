@@ -17,51 +17,50 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G7u-U4-z2r">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="8" y="8" width="359" height="651"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeE-dC-bp7">
-                    <rect key="frame" x="8" y="615" width="44" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="44" id="kym-AC-iKe"/>
-                        <constraint firstAttribute="height" constant="44" id="zKl-gd-JPI"/>
-                    </constraints>
-                    <inset key="imageEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
-                    <state key="normal" image="crop_cancel.png"/>
-                    <connections>
-                        <action selector="clickCancelBtn:" destination="-1" eventType="touchUpInside" id="1zo-du-3pg"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Byn-2A-io7">
-                    <rect key="frame" x="323" y="615" width="44" height="44"/>
+                    <rect key="frame" x="315" y="627" width="60" height="40"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="WLb-0U-Xrb"/>
-                        <constraint firstAttribute="width" constant="44" id="fAU-vT-HMM"/>
+                        <constraint firstAttribute="width" constant="60" id="Wsn-FZ-Ni2"/>
+                        <constraint firstAttribute="height" constant="40" id="xhM-DF-acH"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
-                    <state key="normal" image="crop_ok.png"/>
+                    <state key="normal" title="确定"/>
                     <connections>
                         <action selector="clickOkBtn:" destination="-1" eventType="touchUpInside" id="Ze3-qs-NzA"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeE-dC-bp7">
+                    <rect key="frame" x="0.0" y="627" width="60" height="40"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="f3y-BK-sC1"/>
+                        <constraint firstAttribute="height" constant="40" id="ktM-PI-bBk"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <inset key="imageEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
+                    <state key="normal" title="取消"/>
+                    <connections>
+                        <action selector="clickCancelBtn:" destination="-1" eventType="touchUpInside" id="1zo-du-3pg"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="G7u-U4-z2r" secondAttribute="bottom" id="8kb-zI-WHY"/>
-                <constraint firstAttribute="bottom" secondItem="Byn-2A-io7" secondAttribute="bottom" constant="8" id="AGu-tQ-VTX"/>
-                <constraint firstAttribute="trailing" secondItem="G7u-U4-z2r" secondAttribute="trailing" id="THn-Z2-KaO"/>
-                <constraint firstItem="G7u-U4-z2r" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZTr-W1-lhp"/>
-                <constraint firstAttribute="trailing" secondItem="Byn-2A-io7" secondAttribute="trailing" constant="8" id="ePD-oz-sOT"/>
-                <constraint firstAttribute="bottom" secondItem="KeE-dC-bp7" secondAttribute="bottom" constant="8" id="iJh-oV-biT"/>
-                <constraint firstItem="KeE-dC-bp7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="lqh-RQ-Swl"/>
-                <constraint firstItem="G7u-U4-z2r" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vC0-B3-yE3"/>
+                <constraint firstItem="KeE-dC-bp7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="81q-JI-6pn"/>
+                <constraint firstAttribute="bottom" secondItem="G7u-U4-z2r" secondAttribute="bottom" constant="8" id="8kb-zI-WHY"/>
+                <constraint firstAttribute="bottom" secondItem="Byn-2A-io7" secondAttribute="bottom" id="APN-PR-tkP"/>
+                <constraint firstAttribute="trailing" secondItem="G7u-U4-z2r" secondAttribute="trailing" constant="8" id="THn-Z2-KaO"/>
+                <constraint firstAttribute="trailing" secondItem="Byn-2A-io7" secondAttribute="trailing" id="Xr1-Mm-Wvk"/>
+                <constraint firstItem="G7u-U4-z2r" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="ZTr-W1-lhp"/>
+                <constraint firstAttribute="bottom" secondItem="KeE-dC-bp7" secondAttribute="bottom" id="jjO-04-a0r"/>
+                <constraint firstItem="G7u-U4-z2r" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="vC0-B3-yE3"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="304.5" y="374.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="crop_cancel.png" width="38" height="39"/>
-        <image name="crop_ok.png" width="72" height="72"/>
-    </resources>
 </document>
