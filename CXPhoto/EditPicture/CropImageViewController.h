@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 typedef void (^BBimageEditBlock) (UIImage *editedImage);
+
+
 @interface CropImageViewController : UIViewController
 
-+ (instancetype)getCropImageWithImage:(UIImage *)image;
 @property (nonatomic,copy) BBimageEditBlock imageEditBlock;
-//@property (nonatomic, copy) void (^CropImageBlock)(UIImage *cropedImage);
-//
+
++ (instancetype)getCropImageWithImage:(UIImage *)image;
+
+@property (strong, nonatomic) UIImage *image;
+
 @end

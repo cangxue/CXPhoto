@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CropImageViewController">
             <connections>
-                <outlet property="imageHolderView" destination="G7u-U4-z2r" id="laX-8b-JAe"/>
+                <outlet property="arrow1" destination="Ui8-T5-4JQ" id="hss-QB-mFi"/>
+                <outlet property="arrow2" destination="kTe-Wd-1SQ" id="341-YZ-qbw"/>
+                <outlet property="arrow3" destination="K8h-Am-1lH" id="vay-xs-dmH"/>
+                <outlet property="arrow4" destination="ZXv-NN-dkH" id="vBG-e9-Oh6"/>
+                <outlet property="cropMaskView" destination="Qgr-MZ-YOz" id="14a-ZD-JJe"/>
+                <outlet property="cropView" destination="Moz-nS-rvy" id="zuX-Nd-PPi"/>
+                <outlet property="imageHolderView" destination="Owf-hq-Yke" id="c5T-iI-c1P"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,51 +21,110 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G7u-U4-z2r">
-                    <rect key="frame" x="8" y="8" width="359" height="651"/>
-                </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Byn-2A-io7">
-                    <rect key="frame" x="315" y="627" width="60" height="40"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="Wsn-FZ-Ni2"/>
-                        <constraint firstAttribute="height" constant="40" id="xhM-DF-acH"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
-                    <state key="normal" title="确定"/>
-                    <connections>
-                        <action selector="clickOkBtn:" destination="-1" eventType="touchUpInside" id="Ze3-qs-NzA"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeE-dC-bp7">
-                    <rect key="frame" x="0.0" y="627" width="60" height="40"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="f3y-BK-sC1"/>
-                        <constraint firstAttribute="height" constant="40" id="ktM-PI-bBk"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                <view contentMode="scaleAspectFill" id="Owf-hq-Yke" customClass="UIImageView">
+                    <rect key="frame" x="10" y="72" width="355" height="344"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                </view>
+                <view contentMode="scaleToFill" id="Qgr-MZ-YOz">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Moz-nS-rvy">
+                            <rect key="frame" x="10" y="72" width="355" height="448"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="Pws-Sv-aB3" appends="YES" id="5Cz-Qe-zZM"/>
+                            </connections>
+                        </imageView>
+                        <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow1.png" id="Ui8-T5-4JQ">
+                            <rect key="frame" x="10" y="72" width="25" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="4Sd-xr-rt8" appends="YES" id="ILd-Dh-bJx"/>
+                            </connections>
+                        </imageView>
+                        <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow2.png" id="kTe-Wd-1SQ">
+                            <rect key="frame" x="340" y="72" width="25" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="nMX-U1-AWL" appends="YES" id="A0r-zZ-w4P"/>
+                            </connections>
+                        </imageView>
+                        <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow4.png" id="ZXv-NN-dkH">
+                            <rect key="frame" x="340" y="498" width="25" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="PGb-Ta-SbO" appends="YES" id="A8S-sx-ZwX"/>
+                            </connections>
+                        </imageView>
+                        <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow3.png" id="K8h-Am-1lH">
+                            <rect key="frame" x="10" y="498" width="25" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="qfZ-oR-JoZ" appends="YES" id="83h-Rs-TVZ"/>
+                            </connections>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KeE-dC-bp7">
+                    <rect key="frame" x="8" y="629" width="48" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <inset key="imageEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
                     <state key="normal" title="取消"/>
                     <connections>
                         <action selector="clickCancelBtn:" destination="-1" eventType="touchUpInside" id="1zo-du-3pg"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Byn-2A-io7">
+                    <rect key="frame" x="318" y="629" width="48" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                    <state key="normal" title="确定"/>
+                    <connections>
+                        <action selector="clickOkBtn:" destination="-1" eventType="touchUpInside" id="Ze3-qs-NzA"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-            <constraints>
-                <constraint firstItem="KeE-dC-bp7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="81q-JI-6pn"/>
-                <constraint firstAttribute="bottom" secondItem="G7u-U4-z2r" secondAttribute="bottom" constant="8" id="8kb-zI-WHY"/>
-                <constraint firstAttribute="bottom" secondItem="Byn-2A-io7" secondAttribute="bottom" id="APN-PR-tkP"/>
-                <constraint firstAttribute="trailing" secondItem="G7u-U4-z2r" secondAttribute="trailing" constant="8" id="THn-Z2-KaO"/>
-                <constraint firstAttribute="trailing" secondItem="Byn-2A-io7" secondAttribute="trailing" id="Xr1-Mm-Wvk"/>
-                <constraint firstItem="G7u-U4-z2r" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="ZTr-W1-lhp"/>
-                <constraint firstAttribute="bottom" secondItem="KeE-dC-bp7" secondAttribute="bottom" id="jjO-04-a0r"/>
-                <constraint firstItem="G7u-U4-z2r" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="vC0-B3-yE3"/>
-            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="304.5" y="374.5"/>
         </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="4Sd-xr-rt8">
+            <connections>
+                <action selector="moveCorner:" destination="-1" id="lL5-Mn-yf2"/>
+            </connections>
+        </panGestureRecognizer>
+        <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="nMX-U1-AWL">
+            <connections>
+                <action selector="moveCorner:" destination="-1" id="1vr-F5-cE7"/>
+            </connections>
+        </panGestureRecognizer>
+        <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="qfZ-oR-JoZ">
+            <connections>
+                <action selector="moveCorner:" destination="-1" id="AsB-AS-hKE"/>
+            </connections>
+        </panGestureRecognizer>
+        <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="PGb-Ta-SbO">
+            <connections>
+                <action selector="moveCorner:" destination="-1" id="W5H-Pm-rqg"/>
+            </connections>
+        </panGestureRecognizer>
+        <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="Pws-Sv-aB3">
+            <connections>
+                <action selector="moveCropView:" destination="-1" id="oni-RJ-VXv"/>
+            </connections>
+        </panGestureRecognizer>
     </objects>
+    <resources>
+        <image name="arrow1.png" width="50" height="45"/>
+        <image name="arrow2.png" width="50" height="45"/>
+        <image name="arrow3.png" width="50" height="45"/>
+        <image name="arrow4.png" width="50" height="45"/>
+    </resources>
 </document>
