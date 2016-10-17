@@ -133,11 +133,13 @@ static UIImage *_myImage;
     CGRect frame = self.imageHolderView.frame;
     frame.size.width = Width;
     frame.size.height = Height;
-    CGPoint center = CGPointMake(CGRectGetMidX([UIScreen mainScreen].bounds), frame.size.height / 2.0 + PADDING);
+    CGPoint center = CGPointMake(CGRectGetMidX([UIScreen mainScreen].bounds), SCREENHEIGHT/2.0 - 44 + PADDING);
     
     //比例
     imageHWFactor = self.image.size.height / self.image.size.width;
     _viewHWFactor = Height/Width;
+    
+    NSLog(@"%f,%f",imageHWFactor,_viewHWFactor);
     
     if(imageHWFactor <= _viewHWFactor) {//以宽为主
         if (self.image.size.width < Width) {
@@ -159,15 +161,19 @@ static UIImage *_myImage;
             frame.size.height = Height;
             frame.size.width = Height / imageHWFactor;
         }
+        
     }
     
-    imageScale = self.image.size.height / CGRectGetHeight(self.imageHolderView.frame);
+    imageScale = self.image.size.height / frame.size.height;
+    
     
     self.imageHolderView.frame = frame;
     self.imageHolderView.center = center;
     self.imageHolderView.image = self.image;
     self.imageHolderView.contentMode = UIViewContentModeScaleToFill;
     [self.imageHolderView setNeedsUpdateConstraints];
+    
+//    NSLog(@"111111====%f,%f,%f,%f",self.imageHolderView.frame.origin.x,self.imageHolderView.frame.origin.y,self.imageHolderView.frame.size.width,self.imageHolderView.frame.size.height);
     
 //    CGRect maskframe = self.cropMaskView.frame;
 //    maskframe = frame;
