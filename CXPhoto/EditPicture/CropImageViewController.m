@@ -127,13 +127,13 @@ static UIImage *_myImage;
     
     //默认宽高
     CGFloat Width = SCREENWIDTH - 2 * PADDING;
-    CGFloat Height = SCREENHEIGHT - PADDING - 44;
+    CGFloat Height = SCREENHEIGHT - PADDING - 40;
     
     //图片尺寸
     CGRect frame = self.imageHolderView.frame;
     frame.size.width = Width;
     frame.size.height = Height;
-    CGPoint center = CGPointMake(CGRectGetMidX([UIScreen mainScreen].bounds), SCREENHEIGHT/2.0 - 44 + PADDING);
+    CGPoint center = CGPointMake(CGRectGetMidX([UIScreen mainScreen].bounds), SCREENHEIGHT/2.0 - 40 + 2*PADDING);
     
     //比例
     imageHWFactor = self.image.size.height / self.image.size.width;
